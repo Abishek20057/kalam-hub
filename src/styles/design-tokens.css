@@ -1,0 +1,203 @@
+/**
+ * KalamHub Design Tokens
+ * Section 7 of Home Page Architecture v1.0
+ *
+ * These CSS custom properties are the ONLY source of color, spacing,
+ * typography, shadow, and radius values across the entire project.
+ * Never use hardcoded values anywhere — always reference these tokens.
+ *
+ * Dark mode values are applied via [data-theme="dark"] on <html>.
+ *
+ * This file is imported into src/app/globals.css, where the values are
+ * re-mapped into Tailwind v4's @theme layer so they become usable as
+ * Tailwind utility classes (e.g. bg-primary, text-neutral-700) while
+ * remaining editable from this single file.
+ */
+
+:root {
+  /* ─────────────────────────────────────────
+   * PRIMARY COLORS (Brand)
+   * ───────────────────────────────────────── */
+  --color-primary: #2563eb;        /* Blue 600 — primary action, CTAs */
+  --color-primary-hover: #1d4ed8;  /* Blue 700 — hover state */
+  --color-primary-light: #eff6ff;  /* Blue 50  — tinted backgrounds */
+  --color-primary-dark: #1e40af;   /* Blue 800 — dark mode variant */
+
+  /* ─────────────────────────────────────────
+   * ACCENT COLORS
+   * ───────────────────────────────────────── */
+  --color-accent: #7c3aed;         /* Violet 600 — secondary accent, AI features */
+  --color-accent-light: #f5f3ff;   /* Violet 50  — accent backgrounds */
+
+  /* ─────────────────────────────────────────
+   * NEUTRAL COLORS
+   * ───────────────────────────────────────── */
+  --color-neutral-900: #0f172a;    /* Slate 900 — primary text, dark bg */
+  --color-neutral-800: #1e293b;    /* Slate 800 — heading text */
+  --color-neutral-700: #334155;    /* Slate 700 — body text */
+  --color-neutral-500: #64748b;    /* Slate 500 — secondary text */
+  --color-neutral-400: #94a3b8;    /* Slate 400 — placeholder, muted */
+  --color-neutral-200: #e2e8f0;    /* Slate 200 — borders */
+  --color-neutral-100: #f1f5f9;    /* Slate 100 — subtle background */
+  --color-neutral-50: #f8fafc;     /* Slate 50  — page background */
+
+  /* ─────────────────────────────────────────
+   * SEMANTIC COLORS
+   * ───────────────────────────────────────── */
+  --color-success: #16a34a;        /* Green 600 */
+  --color-success-light: #f0fdf4;  /* Green 50 */
+  --color-warning: #d97706;        /* Amber 600 */
+  --color-warning-light: #fffbeb;  /* Amber 50 */
+  --color-error: #dc2626;          /* Red 600 */
+  --color-error-light: #fef2f2;    /* Red 50 */
+
+  /* ─────────────────────────────────────────
+   * FREE / PREMIUM BADGES
+   * ───────────────────────────────────────── */
+  --color-free: #16a34a;           /* Green */
+  --color-premium: #d97706;        /* Amber/Gold */
+
+  /* ─────────────────────────────────────────
+   * SEMANTIC SURFACE ALIASES (light mode)
+   * ───────────────────────────────────────── */
+  --color-bg: var(--color-neutral-50);
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
+  --color-border: var(--color-neutral-200);
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-500);
+  --color-text-body: var(--color-neutral-700);
+  --color-text-muted: var(--color-neutral-400);
+
+  /* ─────────────────────────────────────────
+   * TYPOGRAPHY
+   * ───────────────────────────────────────── */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Type scale */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+  --text-7xl:  4.5rem;     /* 72px */
+
+  /* Line heights */
+  --leading-xs:   1.5;
+  --leading-sm:   1.5;
+  --leading-base: 1.7;
+  --leading-lg:   1.6;
+  --leading-xl:   1.5;
+  --leading-2xl:  1.4;
+  --leading-3xl:  1.3;
+  --leading-4xl:  1.2;
+  --leading-5xl:  1.1;
+  --leading-6xl:  1.05;
+  --leading-7xl:  1.0;
+
+  /* Font weights */
+  --font-regular:  400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+  /* Letter spacing */
+  --tracking-tight:  -0.02em;  /* headings */
+  --tracking-normal:  0em;     /* body */
+  --tracking-wide:    0.05em;  /* caps / labels */
+
+  /* ─────────────────────────────────────────
+   * SPACING (4px base unit)
+   * ───────────────────────────────────────── */
+  --space-1:  0.25rem;   /*  4px */
+  --space-2:  0.5rem;    /*  8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.25rem;   /* 20px */
+  --space-6:  1.5rem;    /* 24px */
+  --space-8:  2rem;      /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+
+  /* Section vertical padding */
+  --section-padding-desktop: var(--space-20);  /* 80px */
+  --section-padding-tablet:  var(--space-16);  /* 64px */
+  --section-padding-mobile:  var(--space-12);  /* 48px */
+
+  /* Container */
+  --container-max-width: 1280px;
+  --container-padding-desktop: var(--space-6);  /* 24px */
+  --container-padding-tablet:  var(--space-5);  /* 20px */
+  --container-padding-mobile:  var(--space-4);  /* 16px */
+
+  /* ─────────────────────────────────────────
+   * BORDER RADIUS
+   * ───────────────────────────────────────── */
+  --radius-sm:   4px;       /* badges, tags, small pills */
+  --radius-md:   8px;       /* buttons, inputs, small cards */
+  --radius-lg:   12px;      /* cards, panels */
+  --radius-xl:   16px;      /* sections with rounded corners */
+  --radius-full: 9999px;    /* circular avatars, pill buttons */
+
+  /* ─────────────────────────────────────────
+   * SHADOWS
+   * ───────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.10), 0 8px 10px rgba(0, 0, 0, 0.06);
+
+  /* ─────────────────────────────────────────
+   * TRANSITIONS
+   * ───────────────────────────────────────── */
+  --transition-color:  color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  --transition-shadow: box-shadow 0.2s ease;
+  --transition-scale:  transform 0.2s ease;
+  --transition-all:    all 0.15s ease;
+
+  /* ─────────────────────────────────────────
+   * GLASSMORPHISM
+   * Only use on dark/gradient backgrounds (nav on scroll, hero overlays, Final CTA)
+   * ───────────────────────────────────────── */
+  --glass-bg:     rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur:   blur(12px);
+
+  /* ─────────────────────────────────────────
+   * Z-INDEX SCALE
+   * ───────────────────────────────────────── */
+  --z-base:    0;
+  --z-above:   10;
+  --z-dropdown: 100;
+  --z-sticky:  200;
+  --z-overlay: 300;
+  --z-modal:   400;
+  --z-toast:   500;
+}
+
+/* ─────────────────────────────────────────
+ * DARK MODE
+ * Applied via [data-theme="dark"] on <html>
+ * ───────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-bg:           #0a0f1e;   /* near-black, custom */
+  --color-surface:      #111827;   /* Gray 900 */
+  --color-card:         #1f2937;   /* Gray 800 */
+  --color-border:       #374151;   /* Gray 700 */
+  --color-text-primary: #f8fafc;   /* near-white */
+  --color-text-secondary: #94a3b8; /* Slate 400 */
+  --color-text-body:    #cbd5e1;   /* Slate 300 */
+  --color-text-muted:   #64748b;   /* Slate 500 */
+  --color-primary-light: rgba(37, 99, 235, 0.15);
+  --color-accent-light:  rgba(124, 58, 237, 0.15);
+}

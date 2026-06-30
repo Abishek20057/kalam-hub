@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "../styles/design-tokens.css";
+@import "tw-animate-css";
+/**
+ * KalamHub Global Styles
+ * Tailwind CSS v4
+ * Design tokens are imported from design-tokens.css.
+ */
+ 
+@theme inline {
+  /* Colors */
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+
+  --color-success: var(--color-success);
+  --color-success-light: var(--color-success-light);
+  --color-warning: var(--color-warning);
+  --color-warning-light: var(--color-warning-light);
+  --color-error: var(--color-error);
+  --color-error-light: var(--color-error-light);
+
+  --color-free: var(--color-free);
+  --color-premium: var(--color-premium);
+
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-card: var(--color-card);
+  --color-border: var(--color-border);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-body: var(--color-text-body);
+  --color-text-muted: var(--color-text-muted);
+
+  /* Fonts
+   * NOTE: design-tokens.css defines --font-sans/--font-mono as literal
+   * font-family strings (e.g. 'Inter', system-ui...). layout.tsx loads
+   * Inter and JetBrains Mono via next/font, which generates its own
+   * variables (--font-sans-loaded / --font-mono-loaded) for optimized,
+   * self-hosted font files. We prefer the next/font-loaded variable
+   * here, falling back to the token string if fonts haven't loaded yet
+   * or next/font variables aren't present (e.g. isolated component
+   * previews). This keeps design-tokens.css as the documented source of
+   * truth for "which font family" while still getting next/font's
+   * performance benefits. */
+  --font-sans: var(--font-sans-loaded, var(--font-sans));
+  --font-mono: var(--font-mono-loaded, var(--font-mono));
+
+  /* Radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  /* Shadows */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+
+  /* Z-index */
+  --z-base: var(--z-base);
+  --z-above: var(--z-above);
+  --z-dropdown: var(--z-dropdown);
+  --z-sticky: var(--z-sticky);
+  --z-overlay: var(--z-overlay);
+  --z-modal: var(--z-modal);
+  --z-toast: var(--z-toast);
+}
+
+/* ─────────────────────────────────────────
+ * BASE RESET / GLOBAL ELEMENT STYLES
+ * ───────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-body);
+    font-family: var(--font-sans);
+    line-height: var(--leading-base);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-text-primary);
+    letter-spacing: var(--tracking-tight);
+    font-weight: var(--font-bold);
+  }
+
+  /* Respect motion preferences globally — backstop for any animation
+     that doesn't individually check useReducedMotion(). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ─────────────────────────────────────────
+ * GLASSMORPHISM UTILITY
+ * Only apply on dark/gradient backgrounds — see Architecture Doc 7.8
+ * ───────────────────────────────────────── */
+@utility glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
