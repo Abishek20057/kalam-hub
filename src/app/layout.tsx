@@ -3,14 +3,15 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { Providers } from "@/providers";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/constants";
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
+import { Navbar } from "@/components/layout/navbar";
 import "./globals.css";
 
 /**
  * KalamHub — Root Layout
  *
  * Module 1 scope: fonts, providers, and base metadata only.
- * Module 2 — Section 1 adds AnnouncementBar here. Navbar / Footer are
- * still NOT added — those land in their own Module 2 sections.
+ * Module 2 — Section 1 added AnnouncementBar, Section 2 added Navbar.
+ * Footer is still NOT added — that lands in its own Module 2 section.
  */
 const inter = Inter({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
         <Providers>
           <AnnouncementBar />
+          <Navbar />
           {children}
         </Providers>
       </body>

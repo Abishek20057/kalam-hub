@@ -23,14 +23,16 @@ export const SITE_URL = "https://kalamhub.com";
 
 export const NAV_CONFIG: NavConfiguration = {
   navLinks: [
+    { label: "Home", href: "/" },
     { label: "Projects", href: "/projects" },
-    { label: "Technologies", href: "/#technologies" },
-    { label: "About", href: "/about" },
     { label: "Gallery", href: "/gallery" },
+    { label: "Internships", href: "/internships" },
+    { label: "Workshops", href: "/workshops" },
     { label: "Team", href: "/team" },
+    { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
-  ctaText: "Get Started",
+  ctaText: "Start Building",
   ctaHref: "/projects",
   logoSrc: "/images/logo/kalamhub-logo.svg",
   logoAlt: "KalamHub logo",
