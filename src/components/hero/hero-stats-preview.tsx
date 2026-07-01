@@ -21,7 +21,7 @@ export function HeroStatsPreview() {
           >
             <div className="flex items-center gap-3">
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-primary-light)] text-[var(--color-primary)]">
-                <Icon name={stat.icon as any} size={20} />
+                <Icon name={stat.icon ?? ""} size={20} />
               </span>
               <div>
                 <p className="text-2xl font-semibold text-[var(--color-text-primary)]">

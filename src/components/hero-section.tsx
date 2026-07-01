@@ -1,3 +1,7 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { HeroBackground } from "@/components/hero/hero-background";
 import { HeroCtas } from "@/components/hero/hero-ctas";
@@ -16,9 +20,11 @@ const backgroundStyles: Record<HeroContent["backgroundVariant"], string> = {
 
 export function HeroSection() {
   const hero = placeholderHero;
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section
+      aria-label="Homepage hero section"
       className={backgroundStyles[hero.backgroundVariant]}
     >
       <div className="relative overflow-hidden py-[var(--section-padding-mobile)] md:py-[var(--section-padding-tablet)] xl:py-[var(--section-padding-desktop)]">
@@ -26,11 +32,19 @@ export function HeroSection() {
         <HeroFloaters technologies={placeholderTechnologies} />
 
         <Container as="div" className="relative z-10">
-          <div className="mx-auto flex min-h-[calc(100vh-112px)] max-w-4xl flex-col items-center justify-center gap-8 text-center">
+          <motion.div
+            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
+            animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mx-auto flex min-h-[calc(100vh-112px)] max-w-4xl flex-col items-center justify-center gap-8 text-center"
+          >
             {hero.badgeText ? (
-              <span className="rounded-full border border-[var(--color-primary)] bg-[var(--color-primary-light)] px-4 py-1 text-sm font-semibold text-[var(--color-primary)]">
+              <Badge
+                variant="new"
+                className="normal-case rounded-full border border-[var(--color-primary)] bg-[var(--color-primary-light)] px-4 py-1 text-sm font-semibold text-[var(--color-primary)]"
+              >
                 {hero.badgeText}
-              </span>
+              </Badge>
             ) : null}
 
             <div className="space-y-6 px-4 sm:px-0">
@@ -54,7 +68,7 @@ export function HeroSection() {
 
             <HeroStatsPreview />
             <ScrollIndicator />
-          </div>
+          </motion.div>
         </Container>
       </div>
     </section>

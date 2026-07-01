@@ -67,7 +67,7 @@ export function HeroFloaters({ technologies }: HeroFloatersProps) {
           >
             <div className="flex items-center gap-3">
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-primary-light)] text-[var(--color-primary)] shadow-sm">
-                <Icon name={technology.icon as any} size={20} />
+                <Icon name={technology.icon} size={20} />
               </span>
               <div>
                 <p className="text-sm font-semibold text-[var(--color-text-primary)]">

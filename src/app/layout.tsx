@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import { Providers } from "@/providers";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/constants";
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
@@ -13,18 +12,6 @@ import "./globals.css";
  * Module 2 — Section 1 added AnnouncementBar, Section 2 added Navbar.
  * Footer is still NOT added — that lands in its own Module 2 section.
  */
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans-loaded",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono-loaded",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -41,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body>
         <Providers>
           <AnnouncementBar />
           <Navbar />

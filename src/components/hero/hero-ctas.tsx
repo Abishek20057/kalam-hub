@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
@@ -17,10 +18,17 @@ export function HeroCtas({
   secondaryCtaHref,
 }: HeroCtasProps) {
   const router = useRouter();
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+    <motion.div
+      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
+      animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="flex flex-col items-center justify-center gap-3 sm:flex-row"
+    >
       <Button
+        type="button"
         size="lg"
         className="min-w-[12rem]"
         onClick={() => router.push(primaryCtaHref)}
@@ -29,6 +37,7 @@ export function HeroCtas({
       </Button>
       {secondaryCtaText && secondaryCtaHref ? (
         <Button
+          type="button"
           size="lg"
           variant="secondary"
           className="min-w-[12rem]"
@@ -37,6 +46,6 @@ export function HeroCtas({
           {secondaryCtaText}
         </Button>
       ) : null}
-    </div>
+    </motion.div>
   );
 }
