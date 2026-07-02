@@ -4,6 +4,7 @@ export * from "./team";
 export * from "./technologies";
 export * from "./stats";
 export * from "./hero";
+export * from "./project-search";
 export * from "./about";
 export * from "./why-choose";
 export * from "./journey";
