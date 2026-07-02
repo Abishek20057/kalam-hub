@@ -34,7 +34,7 @@ export const NAV_CONFIG: NavConfiguration = {
   ],
   ctaText: "Start Building",
   ctaHref: "/projects",
-  logoSrc: "/images/logo/kalamhub-logo.svg",
+  logoSrc: "/images/logo/kalam-hub-logo.png",
   logoAlt: "KalamHub logo",
   isSticky: true,
 };
