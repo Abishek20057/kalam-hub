@@ -32,11 +32,11 @@ export function HeroFloaters({ technologies }: HeroFloatersProps) {
     <div className="pointer-events-none absolute inset-0 hidden lg:block">
       <motion.div
         className="absolute inset-0"
-        animate={prefersReducedMotion ? undefined : { rotate: [0, 360] }}
-        transition={prefersReducedMotion ? undefined : { duration: 40, repeat: Infinity, ease: "linear" }}
+        animate={prefersReducedMotion ? undefined : { opacity: [0.95, 1, 0.95] }}
+        transition={prefersReducedMotion ? undefined : { duration: 24, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="absolute left-1/2 top-1/4 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-[var(--color-primary)]/15 blur-3xl" />
-        <div className="absolute right-1/4 top-1/2 -z-10 h-72 w-72 rounded-full bg-[var(--color-accent)]/15 blur-3xl" />
+        <div className="absolute left-1/2 top-1/4 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-[var(--color-primary)]/12 blur-2xl" />
+        <div className="absolute right-1/4 top-1/2 -z-10 h-72 w-72 rounded-full bg-[var(--color-accent)]/12 blur-2xl" />
       </motion.div>
 
       {technologies.slice(0, 4).map((technology, index) => {
@@ -46,7 +46,7 @@ export function HeroFloaters({ technologies }: HeroFloatersProps) {
           <motion.div
             key={technology.id}
             className={cn(
-              "absolute rounded-[var(--radius-xl)] border border-white/10 bg-[var(--color-surface)]/80 p-4 shadow-xl backdrop-blur-xl",
+              "absolute rounded-[var(--radius-xl)] border border-white/10 bg-[var(--color-surface)]/88 p-4 shadow-xl backdrop-blur-lg",
               position.size,
             )}
             style={{
@@ -55,10 +55,10 @@ export function HeroFloaters({ technologies }: HeroFloatersProps) {
               right: position.right,
               bottom: position.bottom,
             }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -8, 0] }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -6, 0] }}
             transition={{
-              duration: 6,
+              duration: 8,
               delay: position.delay,
               repeat: prefersReducedMotion ? 0 : Infinity,
               repeatType: "reverse",

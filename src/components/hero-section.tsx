@@ -36,7 +36,7 @@ export function HeroSection() {
             initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
             animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mx-auto flex min-h-[calc(100vh-112px)] max-w-4xl flex-col items-center justify-center gap-8 text-center"
+            className="mx-auto flex min-h-[calc(70vh-112px)] max-w-4xl flex-col items-center justify-center gap-8 text-center"
           >
             {hero.badgeText ? (
               <Badge

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { NAV_CONFIG } from "@/constants";
 import { useScrollAnimation } from "@/hooks";
@@ -42,9 +43,15 @@ export function Navbar() {
           className="flex items-center gap-2 rounded-[var(--radius-md)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
           aria-label={`${NAV_CONFIG.logoAlt} — Home`}
         >
-          <span className="text-lg font-bold tracking-[var(--tracking-tight)] text-[var(--color-text-primary)]">
-            Kalam<span className="text-[var(--color-primary)]">Hub</span>
-          </span>
+          <Image
+            src={NAV_CONFIG.logoSrc}
+            alt={NAV_CONFIG.logoAlt}
+            width={40}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
+          <span className="sr-only">{NAV_CONFIG.logoAlt}</span>
         </Link>
 
         {/* Links — centered */}
