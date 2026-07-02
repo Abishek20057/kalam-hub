@@ -14,6 +14,7 @@ export interface Technology {
   name: string;                 /* e.g. "Arduino", "ESP32", "IoT" */
   slug: string;                 /* used in /projects?tech=[slug] */
   icon: string;                 /* Lucide icon name OR custom SVG sprite id */
+  description: string;          /* short summary shown in the Explorer cards */
   projectCount: number;         /* DB-derived, cached 1hr per Architecture Doc 4.5 */
   isActive: boolean;            /* Admin toggle: show/hide chip */
   displayOrder: number;

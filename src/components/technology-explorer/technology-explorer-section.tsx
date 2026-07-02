@@ -12,18 +12,11 @@ import { cn } from "@/lib/utils";
 
 const categoryTabs = [
   "All",
-  "AI",
-  "Machine Learning",
-  "IoT",
+  "Basic Electronics",
   "Embedded Systems",
+  "IoT",
   "PCB Design",
-  "Robotics",
-  "VLSI",
-  "Communication Systems",
   "Power Electronics",
-  "Computer Vision",
-  "Drone Technology",
-  "Renewable Energy",
 ] as const;
 
 type CategoryTab = (typeof categoryTabs)[number];
@@ -102,21 +95,21 @@ export function TechnologyExplorerSection() {
               >
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.18),transparent_40%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative flex h-full flex-col gap-5">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-start gap-4">
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-primary-light)] text-[var(--color-primary)] shadow-sm">
                       <Icon name={technology.icon} size={20} />
                     </span>
-                    <div>
+                    <div className="flex-1">
                       <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
                         {technology.name}
                       </h3>
-                      <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
-                        {technology.projectCount}+ projects
+                      <p className="mt-2 text-sm leading-6 text-[var(--color-text-secondary)]">
+                        {technology.description}
                       </p>
                     </div>
                   </div>
                   <div className="mt-auto flex flex-wrap gap-2">
-                    <TagChip label={technology.slug.replace(/-/g, " ")} className="bg-[var(--color-bg)] text-[var(--color-text-body)]" />
+                    <TagChip label={`${technology.projectCount}+ projects`} className="bg-[var(--color-bg)] text-[var(--color-text-body)]" />
                     <TagChip label={technology.isActive ? "Active" : "Hidden"} className="bg-[var(--color-primary-light)] text-[var(--color-primary)]" />
                   </div>
                 </div>
