@@ -20,7 +20,7 @@ export function ProjectSearchSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden py-[var(--section-padding-mobile)] md:py-[var(--section-padding-tablet)] xl:py-[var(--section-padding-desktop)]">
+    <section className="relative overflow-hidden pt-[calc(var(--section-padding-mobile)+4rem)] md:pt-[calc(var(--section-padding-tablet)+4rem)] xl:pt-[calc(var(--section-padding-desktop)+4rem)] pb-[var(--section-padding-mobile)] md:pb-[var(--section-padding-tablet)] xl:pb-[var(--section-padding-desktop)]">
       <Container>
         <motion.div
           initial={prefersReducedMotion ? undefined : { opacity: 0, y: 24 }}
@@ -34,14 +34,14 @@ export function ProjectSearchSection() {
             subHeading={subHeading}
             headingLevel="h2"
             align="center"
-            className="mb-10"
+            className="mb-12"
           />
 
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] xl:gap-12">
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] xl:gap-14">
             <div className="space-y-6">
               <div className="relative overflow-hidden rounded-[var(--radius-xl)] border border-[var(--color-border)] bg-[var(--color-surface)]/85 p-6 shadow-xl backdrop-blur-xl">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.12),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(124,58,237,0.1),transparent_26%)]" />
-                <div className="relative">
+                <div className="relative space-y-6">
                   <label htmlFor="project-search" className="sr-only">
                     Search projects
                   </label>
@@ -60,7 +60,7 @@ export function ProjectSearchSection() {
                     />
                   </div>
 
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                     {filters.map((filter) => (
                       <TagChip key={filter} label={filter} className="rounded-full bg-white/90" />
                     ))}
@@ -83,7 +83,7 @@ export function ProjectSearchSection() {
               </motion.div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               {quickActions.map((action, index) => (
                 <motion.article
                   key={action.id}

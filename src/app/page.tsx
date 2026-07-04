@@ -2,6 +2,8 @@ import { HeroSection } from "@/components/hero-section";
 import { ProjectSearchSection } from "@/components/project-search/project-search-section";
 import { TechnologyExplorerSection } from "@/components/technology-explorer/technology-explorer-section";
 import { AboutSection } from "@/components/about-kalamhub/about-section";
+import { WhyChooseSection } from "@/components/sections/why-choose-section";
+import { InnovationJourneySection } from "@/components/sections/innovation-journey-section";
 
 /**
  * KalamHub — Home Page
@@ -17,6 +19,8 @@ export default function HomePage() {
       <ProjectSearchSection />
       <TechnologyExplorerSection />
       <AboutSection />
+      <WhyChooseSection />
+      <InnovationJourneySection />
     </main>
   );
 }

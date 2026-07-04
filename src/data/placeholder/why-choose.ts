@@ -2,14 +2,38 @@ import type { WhyChooseContent } from "@/lib/types";
 
 /** PHASE 1 PLACEHOLDER — replaced by site_content (key: benefits) in Phase 5. */
 export const placeholderWhyChoose: WhyChooseContent = {
-  heading: "Why Choose KalamHub",
-  subHeading: "The complete combination no single competitor offers.",
+  heading: "Why Choose KalamHub?",
+  subHeading: "Everything engineering students need to transform ideas into real-world projects.",
   benefits: [
-    { icon: "sparkles", title: "AI-Powered Assistance", description: "Smart guidance from idea to deployment." },
-    { icon: "wallet", title: "Affordable Resources", description: "Cost-optimized components and services." },
-    { icon: "git-branch", title: "End-to-End Development Support", description: "We stay with you through every stage." },
-    { icon: "users", title: "Expert Community & Mentorship", description: "Learn from people who've built real products." },
-    { icon: "shopping-cart", title: "Integrated Electronics Marketplace", description: "Everything you need, in one place." },
-    { icon: "rocket", title: "Real-World Deployment Support", description: "Take your prototype to production.", isHighlighted: true },
+    {
+      icon: "sparkles",
+      title: "AI Project Assistant",
+      description: "Get project ideas, architecture, code guidance, and documentation with AI.",
+    },
+    {
+      icon: "book-open",
+      title: "Electronics Learning",
+      description: "Learn Basic Electronics, Embedded Systems, PCB Design, IoT, and Power Electronics.",
+    },
+    {
+      icon: "cpu",
+      title: "Component Selection",
+      description: "Find suitable electronic components with technical specifications.",
+    },
+    {
+      icon: "layers",
+      title: "PCB Design Support",
+      description: "Design professional PCB layouts with step-by-step guidance.",
+    },
+    {
+      icon: "briefcase",
+      title: "Internship & Workshops",
+      description: "Discover internships, workshops, and hands-on learning opportunities.",
+    },
+    {
+      icon: "users",
+      title: "Community & Mentorship",
+      description: "Connect with mentors, students, and innovators.",
+    },
   ],
 };

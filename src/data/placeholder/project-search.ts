@@ -16,44 +16,50 @@ export const placeholderProjectSearch: ProjectSearchPlaceholder = {
   heading: "Search AI-powered engineering projects",
   subHeading:
     "Find the right innovation path with filters, popular searches, and curated quick actions for fast project discovery.",
-  searchPlaceholder: "Search projects, AI tools, hardware builds...",
+  searchPlaceholder: "Search Embedded Systems, PCB Design, IoT Projects...",
   filters: [
-    "AI",
+    "Basic Electronics",
+    "Embedded Systems",
     "IoT",
-    "Robotics",
-    "Embedded",
-    "PCB",
-    "VLSI",
-    "Communication",
+    "PCB Design",
     "Power Electronics",
   ],
   popularSearches: [
-    "AI campus automation",
-    "Low-power robotics",
-    "Wearable health sensors",
-    "Smart energy management",
+    "ESP32 Weather Station",
+    "Smart Home Automation",
+    "Arduino Projects",
+    "PCB Layout Design",
+    "IoT Agriculture",
+    "Basic Electronics Lab",
   ],
   quickActions: [
     {
       id: "action-1",
-      title: "AI project discovery",
+      title: "Embedded Project Library",
       description:
-        "Browse machine learning and computer vision projects with built-in AI guidance.",
-      icon: "cpu",
+        "Discover curated firmware and hardware builds for embedded systems development.",
+      icon: "book",
     },
     {
       id: "action-2",
-      title: "Embedded systems labs",
+      title: "PCB Design Assistant",
       description:
-        "Explore firmware and hardware builds for Arduino, ESP32, and microcontroller design.",
-      icon: "terminal",
+        "Access guided board layouts, schematic best practices, and manufacturable designs.",
+      icon: "layout",
     },
     {
       id: "action-3",
-      title: "PCB & circuit design",
+      title: "IoT Project Collection",
       description:
-        "Access step-by-step electronics layouts, schematics, and board-ready ideas.",
-      icon: "layers",
+        "Browse connected device ideas and end-to-end IoT build examples.",
+      icon: "wifi",
+    },
+    {
+      id: "action-4",
+      title: "Electronics Learning Hub",
+      description:
+        "Find tutorials, labs, and beginner-friendly basics for practical electronics skills.",
+      icon: "graduation-cap",
     },
   ],
 };

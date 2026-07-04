@@ -40,16 +40,15 @@ export function Navbar() {
         {/* Logo — left */}
         <Link
           href="/"
-          className="flex items-center gap-2 rounded-[var(--radius-md)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
+          className="flex items-center gap-3 rounded-[var(--radius-md)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
           aria-label={`${NAV_CONFIG.logoAlt} — Home`}
         >
           <Image
             src={NAV_CONFIG.logoSrc}
             alt={NAV_CONFIG.logoAlt}
-            width={40}
-            height={40}
-            className="h-10 w-auto"
-            priority
+            width={48}
+            height={48}
+            className="h-12 w-auto"
           />
           <span className="sr-only">{NAV_CONFIG.logoAlt}</span>
         </Link>
