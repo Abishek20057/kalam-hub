@@ -12,3 +12,4 @@ export * from "./cta";
 export * from "./footer";
 export * from "./tags";
 export * from "./announcement";
+export * from "./featured-projects";
