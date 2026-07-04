@@ -14,3 +14,4 @@ export * from "./tags";
 export * from "./announcement";
 export * from "./featured-projects";
 export * from "./statistics";
+export * from "./projects-page";
