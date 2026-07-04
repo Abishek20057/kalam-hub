@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Providers } from "@/providers";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/constants";
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
+import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import "./globals.css";
 
@@ -33,6 +34,7 @@ export default function RootLayout({
           <AnnouncementBar />
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
