@@ -1,9 +1,9 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Providers } from "@/providers";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/constants";
-import { AnnouncementBar } from "@/components/layout/announcement-bar";
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import { LayoutSwitcher } from "@/components/layout/layout-switcher";
 import "./globals.css";
 
 /**
@@ -31,10 +31,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
-          <AnnouncementBar />
-          <Navbar />
-          {children}
-          <Footer />
+          <LayoutSwitcher>
+            {children}
+          </LayoutSwitcher>
         </Providers>
       </body>
     </html>

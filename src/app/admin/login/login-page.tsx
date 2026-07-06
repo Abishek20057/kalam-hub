@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import { Icon } from "@/components/ui/icon";
 
 export default function AdminLoginPage() {
   const prefersReducedMotion = useReducedMotion();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -45,10 +47,18 @@ export default function AdminLoginPage() {
     setIsSubmitting(true);
     setStatusMessage("");
 
-    await new Promise((resolve) => window.setTimeout(resolve, 900));
+    // Temporary demo authentication
+    await new Promise((resolve) => setTimeout(resolve, 900));
+
+    if (email === "admin@kalamhub.com" && password === "admin123") {
+      setStatusMessage("Login successful! Redirecting to dashboard...");
+      sessionStorage.setItem("kalamhub-admin-auth", "true");
+      router.push("/admin/dashboard");
+    } else {
+      setStatusMessage("Invalid credentials. Please try again.");
+    }
 
     setIsSubmitting(false);
-    setStatusMessage("Authentication is ready for future integration with NextAuth/Auth.js.");
   };
 
   return (
@@ -159,7 +169,7 @@ export default function AdminLoginPage() {
                   </div>
 
                   {statusMessage && (
-                    <div role="status" aria-live="polite" className="rounded-[var(--radius-md)] border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-700">
+                    <div role="status" aria-live="polite" className="rounded-[var(--radius-md)] border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-500">
                       {statusMessage}
                     </div>
                   )}

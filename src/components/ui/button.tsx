@@ -7,7 +7,7 @@ import { forwardRef, type ButtonHTMLAttributes } from "react";
  * Variants and sizes per Architecture Doc 7.4. Radius is always 8px
  * (--radius-md), transition is the standard 0.15s ease token.
  */
-const buttonVariants = cva(
+export const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] font-medium transition-[var(--transition-all)] disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none",
   {
     variants: {

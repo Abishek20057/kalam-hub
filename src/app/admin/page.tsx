@@ -5,11 +5,11 @@ import { Card } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
 
 const stats = [
-  { label: "Website Statistics", value: "24.8K", icon: "bar-chart-3" },
+  { label: "Total Pages", value: "12", icon: "file-text" },
   { label: "Projects", value: "18", icon: "folder-kanban" },
-  { label: "Workshops", value: "9", icon: "calendar-days" },
-  { label: "Gallery", value: "42", icon: "images" },
+  { label: "Gallery Items", value: "42", icon: "images" },
   { label: "Internships", value: "6", icon: "briefcase" },
+  { label: "Media Assets", value: "256", icon: "image" },
   { label: "Users", value: "128", icon: "users" },
 ];
 
@@ -30,7 +30,11 @@ const quickActions = [
 
 export default function AdminDashboardPage() {
   return (
-    <AdminShell title="Dashboard" subtitle="Welcome back. This premium admin workspace is ready for future CMS modules and placeholder data-driven widgets." breadcrumb={[{ label: "Home", href: "/" }, { label: "Admin" }]}>
+    <AdminShell
+      title="Dashboard"
+      subtitle="Welcome back. This premium admin workspace is ready for future CMS modules and placeholder data-driven widgets."
+      breadcrumb={[{ label: "Dashboard" }]}
+    >
       <div className="space-y-6">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {stats.map((stat) => (

@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -13,22 +13,32 @@ const navigationGroups = [
   {
     title: "Main",
     items: [
-      { label: "Dashboard", href: "/admin", icon: "layout-dashboard" },
-      { label: "Website", href: "/admin/website", icon: "home" },
-      { label: "Projects", href: "/admin/projects", icon: "folder-kanban" },
-      { label: "Workshops", href: "/admin/workshops", icon: "calendar-days" },
-      { label: "Gallery", href: "/admin/gallery", icon: "images" },
-      { label: "Internships", href: "/admin/internships", icon: "briefcase" },
+      { label: "Dashboard", href: "/admin/dashboard", icon: "layout-dashboard" },
+    ],
+  },
+  {
+    title: "Content",
+    items: [
+      { label: "Pages", href: "/admin/content/pages", icon: "file-text" },
+      { label: "Projects", href: "/admin/content/projects", icon: "folder-kanban" },
+      { label: "Gallery", href: "/admin/content/gallery", icon: "images" },
+      { label: "Workshops", href: "/admin/content/workshops", icon: "calendar-days" },
+      { label: "Internships", href: "/admin/content/internships", icon: "briefcase" },
+      { label: "Team", href: "/admin/content/team", icon: "users" },
+      { label: "Contact", href: "/admin/content/contact", icon: "contact" },
+      { label: "FAQs", href: "/admin/content/faqs", icon: "help-circle" },
+      { label: "Announcements", href: "/admin/content/announcements", icon: "megaphone" },
     ],
   },
   {
     title: "System",
     items: [
       { label: "Media Library", href: "/admin/media", icon: "image" },
+      { label: "Navigation", href: "/admin/navigation", icon: "navigation" },
       { label: "SEO", href: "/admin/seo", icon: "search" },
       { label: "Settings", href: "/admin/settings", icon: "settings" },
       { label: "Users", href: "/admin/users", icon: "users" },
-      { label: "Logout", href: "/admin/login", icon: "log-out" },
+      { label: "Audit Logs", href: "/admin/logs", icon: "history" },
     ],
   },
 ];
@@ -42,6 +52,7 @@ interface AdminShellProps {
 
 export function AdminShell({ title, subtitle, breadcrumb, children }: AdminShellProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -53,12 +64,17 @@ export function AdminShell({ title, subtitle, breadcrumb, children }: AdminShell
     return [{ label: title }];
   }, [breadcrumb, title]);
 
+  const handleLogout = () => {
+    sessionStorage.removeItem("kalamhub-admin-auth");
+    router.push("/admin/login");
+  };
+
   return (
     <div className={isDarkMode ? "bg-slate-950 text-slate-100" : "bg-[var(--color-bg)] text-[var(--color-text-primary)]"}>
       <div className="min-h-screen">
         <div className="flex min-h-screen flex-col lg:flex-row">
           <aside
-            className={`fixed inset-y-0 left-0 z-40 w-72 transform border-r border-white/10 bg-slate-950/95 px-4 py-5 text-slate-100 shadow-2xl backdrop-blur-xl transition-transform duration-300 lg:static lg:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
+            className={`fixed inset-y-0 left-0 z-40 flex w-72 transform flex-col border-r border-white/10 bg-slate-950/95 px-4 py-5 text-slate-100 shadow-2xl backdrop-blur-xl transition-transform duration-300 lg:static lg:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
           >
             <div className="flex items-center justify-between px-2">
               <div>
@@ -70,7 +86,7 @@ export function AdminShell({ title, subtitle, breadcrumb, children }: AdminShell
               </Button>
             </div>
 
-            <div className="mt-8 space-y-8">
+            <div className="mt-8 flex-1 space-y-8 overflow-y-auto">
               {navigationGroups.map((group) => (
                 <div key={group.title}>
                   <p className="mb-3 px-2 text-xs font-semibold uppercase tracking-[var(--tracking-wide)] text-slate-500">
@@ -97,6 +113,17 @@ export function AdminShell({ title, subtitle, breadcrumb, children }: AdminShell
                   </nav>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-auto flex-shrink-0 pt-6">
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="flex w-full items-center gap-3 rounded-[var(--radius-md)] px-3 py-2.5 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
+              >
+                <Icon name="log-out" size={16} />
+                <span>Logout</span>
+              </button>
             </div>
           </aside>
 
