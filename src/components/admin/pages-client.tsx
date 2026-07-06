@@ -2,7 +2,7 @@
 
 import { Page } from "@/lib/types/cms";
 import { DataTable } from "@/components/admin/data-table";
-import { columns } from "./pages-columns";
+import { columns } from "@/components/admin/pages-columns";
 
 interface PagesClientProps {
   data: Page[];
