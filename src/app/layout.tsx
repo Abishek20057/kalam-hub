@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next";
 import { Providers } from "@/providers";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/constants";
