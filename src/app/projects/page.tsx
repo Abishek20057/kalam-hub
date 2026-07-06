@@ -8,8 +8,13 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
-import { placeholderProjectsPage } from "@/data/placeholder/projects-page";
+import { placeholderProjects } from "@/data/placeholder/projects";
 import { cn } from "@/lib/utils";
+
+// Augment placeholder data to match component's expectations
+const placeholderProjectsPage = placeholderProjects.map(p => ({
+  ...p, id: p.id, title: p.title, category: p.category, description: `A project in ${p.category}.`, thumbnailUrl: `/images/projects/thumb-${p.id}.svg`, thumbnailAlt: p.title, difficulty: "Beginner", accessType: p.status === 'published' ? 'Free' : 'Premium', tags: [{slug: p.category.toLowerCase(), label: p.category}]
+}));
 
 const categories = ["All", "Basic Electronics", "Embedded Systems", "PCB Design", "IoT", "Power Electronics"] as const;
 const difficulties = ["All", "Beginner", "Intermediate", "Advanced"] as const;

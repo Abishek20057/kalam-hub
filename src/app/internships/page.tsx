@@ -11,16 +11,42 @@ import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
-  featuredInternship,
-  internshipBenefits,
-  internshipCards,
-  internshipCategories,
-  internshipFaqs,
-  learningTracks,
-  liveProjects,
-  roadmapSteps,
-  testimonials,
+  placeholderInternships
 } from "@/data/placeholder/internships";
+
+// Placeholder data that was missing from imports
+const featuredInternship = {
+  title: "Embedded Systems & IoT",
+  description: "A comprehensive program covering everything from basic electronics to advanced IoT applications.",
+  image: "/images/internships/featured.svg",
+  imageAlt: "Featured internship illustration",
+  mode: "Online + Offline",
+  certificate: "Yes",
+  duration: "3-6 Months",
+  liveProjects: "3+ Live Projects",
+  mentorSupport: "Dedicated Support",
+  seatsAvailable: "Limited Seats",
+};
+const internshipBenefits = ["Live Projects", "Mentor Support", "Career Guidance", "Certificate of Completion", "Skill Development", "Networking", "Real-world Experience", "Portfolio Building"];
+const internshipCards = placeholderInternships.map(p => ({...p, id: p.id, image: "/images/internships/card-placeholder.svg", imageAlt: p.title, difficulty: "Beginner", mentor: "Industry Expert", category: "Embedded Systems", description: `An internship for ${p.title}`, certificate: true, mode: p.location}));
+const internshipCategories = ["All", "Embedded Systems", "PCB Design", "IoT", "Frontend", "Data Science"];
+const internshipFaqs = [
+  { question: "Is this internship paid?", answer: "This is a learning-focused program; some roles may offer stipends based on performance." },
+  { question: "What are the prerequisites?", answer: "A basic understanding of electronics and a passion for learning are required." },
+  { question: "How do I apply?", answer: "Click the 'Apply Now' button on the featured internship or individual internship cards." },
+];
+const learningTracks = ["Electronics", "Embedded C", "PCB Design", "IoT", "Project Building"];
+const liveProjects = [
+  { title: "Smart Home Automation", description: "Develop an IoT-based system to control home appliances." },
+  { title: "Wearable Health Monitor", description: "Design a device to track vital signs." },
+  { title: "Automated Gardening System", description: "Build a system to automate plant watering and monitoring." },
+];
+const roadmapSteps = ["Foundation", "Skill Building", "Project Work", "Mentorship", "Career Prep"];
+const testimonials = [
+  { name: "Priya S.", role: "Former Intern", quote: "The hands-on project experience was invaluable for my career." },
+  { name: "Rahul M.", role: "Former Intern", quote: "I learned more in 3 months here than in 2 years of college." },
+  { name: "Anjali K.", role: "Former Intern", quote: "The mentorship and guidance helped me land my dream job." },
+];
 
 export default function InternshipsPage() {
   const prefersReducedMotion = useReducedMotion();

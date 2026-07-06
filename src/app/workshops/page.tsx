@@ -11,14 +11,34 @@ import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
-  featuredWorkshop,
-  learningOutcomes,
-  studentBenefits,
-  workshopCards,
-  workshopCategories,
-  workshopFaqs,
-  workshopSchedule,
+  placeholderWorkshops
 } from "@/data/placeholder/workshops";
+
+// Placeholder data that was missing from imports
+const featuredWorkshop = {
+  title: "Hands-on PCB Design",
+  description: "Learn to design and manufacture your own printed circuit boards from scratch.",
+  image: "/images/workshops/featured.svg",
+  imageAlt: "Featured workshop illustration",
+  level: "Beginner",
+  certificate: "Certificate Included",
+  duration: "2 Days",
+  projectsIncluded: "1+ Project",
+  seatsAvailable: "30 Seats",
+};
+const learningOutcomes = ["Schematic Design", "PCB Layout", "Component Selection", "Gerber Files"];
+const studentBenefits = [
+  { title: "Practical Skills", description: "Gain skills that are directly applicable in the industry." },
+  { title: "Portfolio Project", description: "Build a project to showcase to potential employers." },
+  { title: "Expert Mentorship", description: "Learn from experienced engineers and mentors." },
+];
+const workshopCards = placeholderWorkshops.map(w => ({...w, id: w.id, image: `/images/workshops/card-${w.id}.svg`, imageAlt: w.title, category: "PCB Design", level: "Beginner", description: `A workshop on ${w.title}`, duration: "2 Days", projectsIncluded: "1 Project", seatsAvailable: "30 Seats", certificateAvailable: true}));
+const workshopCategories = ["All", "PCB Design", "Embedded C", "IoT", "Robotics"];
+const workshopFaqs = [
+  { question: "Are the workshops online or offline?", answer: "We offer both online and offline workshops. Please check the details for each specific workshop." },
+  { question: "Is any prior experience required?", answer: "Most of our workshops are beginner-friendly. Specific prerequisites, if any, will be mentioned." },
+];
+const workshopSchedule = placeholderWorkshops.map(w => ({...w, workshop: w.title, date: new Date(w.date).toLocaleDateString(), duration: "2 Days", mode: "Online", status: w.status}));
 
 export default function WorkshopsPage() {
   const prefersReducedMotion = useReducedMotion();

@@ -11,14 +11,35 @@ import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { SectionHeading } from "@/components/ui/section-heading";
 import {
-  featuredGalleryItems,
-  galleryCategories,
-  galleryItems,
-  galleryStats,
-  internshipHighlights,
-  studentProjects,
-  workshopMemories,
-} from "@/data/placeholder/gallery";
+  placeholderGalleryItems
+} from "@/data/placeholder/gallery-items";
+
+// Placeholder data that was missing from imports
+const galleryItems = placeholderGalleryItems.map(item => ({...item, image: `/images/gallery/placeholder-${item.id}.svg`, imageAlt: item.title, description: `A snapshot of ${item.title}`, date: new Date(item.lastUpdated).toDateString(), category: "Workshops"}));
+const featuredGalleryItems = galleryItems.slice(0, 3);
+const galleryCategories = ["All", "Workshops", "Projects", "Internships", "Events"];
+const galleryStats = [
+    { label: "Photos", value: "500+" },
+    { label: "Videos", value: "50+" },
+    { label: "Events", value: "40+" },
+    { label: "Projects", value: "120+" },
+    { label: "Community", value: "1k+" },
+];
+const internshipHighlights = [
+    { title: "Intern Onboarding", image: "/images/gallery/intern-1.svg" },
+    { title: "Project Demos", image: "/images/gallery/intern-2.svg" },
+    { title: "Team Collaboration", image: "/images/gallery/intern-3.svg" },
+];
+const studentProjects = [
+    { title: "IoT Weather Station", studentName: "Rohan & Priya", image: "/images/gallery/project-1.svg", category: "IoT" },
+    { title: "PCB Power Supply", studentName: "Anika V.", image: "/images/gallery/project-2.svg", category: "PCB Design" },
+    { title: "Robotic Arm", studentName: "Sanjay K.", image: "/images/gallery/project-3.svg", category: "Embedded" },
+];
+const workshopMemories = [
+    { title: "Embedded Systems Intro", date: "Aug 2025", image: "/images/gallery/workshop-1.svg" },
+    { title: "Advanced PCB Design", date: "Sep 2025", image: "/images/gallery/workshop-2.svg" },
+    { title: "IoT Fundamentals", date: "Oct 2025", image: "/images/gallery/workshop-3.svg" },
+];
 
 export default function GalleryPage() {
   const prefersReducedMotion = useReducedMotion();

@@ -7,6 +7,7 @@ export const placeholderInternships: Internship[] = [
     location: "Remote",
     type: "Full-time",
     status: "published",
+    duration: "12 Weeks",
     lastUpdated: "2026-06-30T16:25:00Z",
   },
   {
@@ -15,6 +16,7 @@ export const placeholderInternships: Internship[] = [
     location: "On-site",
     type: "Full-time",
     status: "published",
+    duration: "12 Weeks",
     lastUpdated: "2026-06-28T10:00:00Z",
   },
   {
@@ -23,6 +25,7 @@ export const placeholderInternships: Internship[] = [
     location: "Hybrid",
     type: "Part-time",
     status: "archived",
+    duration: "8 Weeks",
     lastUpdated: "2026-04-15T11:00:00Z",
   },
   {
@@ -31,6 +34,7 @@ export const placeholderInternships: Internship[] = [
     location: "Remote",
     type: "Full-time",
     status: "draft",
+    duration: "16 Weeks",
     lastUpdated: "2026-07-03T14:00:00Z",
   },
 ];

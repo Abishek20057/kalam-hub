@@ -64,6 +64,7 @@ export interface Internship {
   location: string;
   type: "Full-time" | "Part-time";
   status: ContentStatus;
+  duration: string;
   lastUpdated: string;
 }
 
