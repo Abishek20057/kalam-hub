@@ -5,7 +5,7 @@ export type PageTemplate = "default" | "full-width" | "landing";
 export interface SectionBlock {
   id: string;
   type: string; // e.g., 'hero', 'feature-grid', 'cta'
-  content: Record<string, any>;
+  content: Record<string, unknown>;
   order: number;
 }
 

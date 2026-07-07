@@ -9,7 +9,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { placeholderProjects } from "@/data/placeholder/projects";
-import { cn } from "@/lib/utils";
 
 // Augment placeholder data to match component's expectations
 const placeholderProjectsPage = placeholderProjects.map(p => ({

@@ -26,6 +26,38 @@ const getStatusBadgeVariant = (status: ContentStatus) => {
   }
 };
 
+function ActionsCell({ item }: { item: FAQ }) {
+  "use no memo";
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <Icon name="more-horizontal" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuItem asChild>
+            <Link href={`/admin/content/faqs/${item.id}`}>
+              <Icon name="edit" className="mr-2 h-4 w-4" />
+              Edit
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => setIsDeleteDialogOpen(true)} className="text-red-500 focus:text-red-500">
+            <Icon name="trash-2" className="mr-2 h-4 w-4" />
+            Delete
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <DeleteDialog isOpen={isDeleteDialogOpen} onClose={() => setIsDeleteDialogOpen(false)} onConfirm={() => { console.log("Deleting..."); setIsDeleteDialogOpen(false); }} title={`Delete FAQ?`} description={`This will permanently delete the question: "${item.question}"`} />
+    </>
+  );
+}
+
 export const columns: ColumnDef<FAQ>[] = [
   {
     accessorKey: "question",
@@ -53,35 +85,7 @@ export const columns: ColumnDef<FAQ>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const item = row.original;
-      const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-
-      return (
-        <>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0"><Icon name="more-horizontal" /></Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Link href={`/admin/content/faqs/${item.id}`}><Icon name="edit" className="mr-2 h-4 w-4" />Edit</Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => setIsDeleteDialogOpen(true)} className="text-red-500 focus:text-red-500">
-                <Icon name="trash-2" className="mr-2 h-4 w-4" />Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DeleteDialog
-            isOpen={isDeleteDialogOpen}
-            onClose={() => setIsDeleteDialogOpen(false)}
-            onConfirm={() => { console.log("Deleting..."); setIsDeleteDialogOpen(false); }}
-            title={`Delete FAQ?`}
-            description={`This will permanently delete the question: "${item.question}"`}
-          />
-        </>
-      );
+      return <ActionsCell item={row.original} />;
     },
   },
 ];

@@ -1,7 +1,7 @@
 "use client";
 
 import { Page } from "@/lib/types/cms";
-import { DataTable } from "@/components/admin/tables/data-table";
+import { DataTable } from "@/components/admin/data-table";
 import { columns } from "./pages-columns";
 
 interface PagesClientProps {

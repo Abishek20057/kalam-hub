@@ -17,6 +17,49 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DeleteDialog } from "@/components/admin/delete-dialog";
 
+function ActionsCell({ page }: { page: Page }) {
+  "use no memo";
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
+  const handleDelete = () => {
+    console.log(`Deleting page: ${page.title}`);
+    // Placeholder for actual delete logic
+    setIsDeleteDialogOpen(false);
+  };
+
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <Icon name="more-horizontal" className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuItem asChild>
+            <Link href={`/admin/content/pages/${page.id}`}>
+              <Icon name="edit" className="mr-2 h-4 w-4" />
+              Edit
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => console.log("Duplicating page...")}>
+            <Icon name="copy" className="mr-2 h-4 w-4" />
+            Duplicate
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => setIsDeleteDialogOpen(true)} className="text-red-500 focus:text-red-500">
+            <Icon name="trash-2" className="mr-2 h-4 w-4" />
+            Delete
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+      <DeleteDialog isOpen={isDeleteDialogOpen} onClose={() => setIsDeleteDialogOpen(false)} onConfirm={handleDelete} title={`Delete "${page.title}"?`} description="This will permanently delete the page. This action cannot be undone." />
+    </>
+  );
+}
+
 export const columns: ColumnDef<Page>[] = [
   {
     accessorKey: "title",
@@ -73,52 +116,7 @@ export const columns: ColumnDef<Page>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const page = row.original;
-      const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-
-      const handleDelete = () => {
-        console.log(`Deleting page: ${page.title}`);
-        // Placeholder for actual delete logic
-        setIsDeleteDialogOpen(false);
-      };
-
-      return (
-        <>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <Icon name="more-horizontal" className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Link href={`/admin/content/pages/${page.id}`}>
-                  <Icon name="edit" className="mr-2 h-4 w-4" />
-                  Edit
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => console.log("Duplicating page...")}>
-                <Icon name="copy" className="mr-2 h-4 w-4" />
-                Duplicate
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => setIsDeleteDialogOpen(true)} className="text-red-500 focus:text-red-500">
-                <Icon name="trash-2" className="mr-2 h-4 w-4" />
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DeleteDialog
-            isOpen={isDeleteDialogOpen}
-            onClose={() => setIsDeleteDialogOpen(false)}
-            onConfirm={handleDelete}
-            title={`Delete "${page.title}"?`}
-            description="This will permanently delete the page. This action cannot be undone."
-          />
-        </>
-      );
+      return <ActionsCell page={row.original} />;
     },
   },
 ];

@@ -23,25 +23,19 @@ const STORAGE_KEY = "kalamhub-announcement-dismissed";
 export function AnnouncementBar() {
   const announcement = placeholderAnnouncement;
   const prefersReducedMotion = useReducedMotion();
-  const [isDismissed, setIsDismissed] = useState(true); // default hidden until checked, avoids flash
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-    if (!announcement.isDismissable) {
-      setIsDismissed(false);
-      return;
+  const [isDismissed, setIsDismissed] = useState(() => {
+    if (typeof window === "undefined") {
+      return true; // On server, assume it's dismissed to avoid hydration mismatch
     }
-    const dismissedMessage = window.localStorage.getItem(STORAGE_KEY);
-    setIsDismissed(dismissedMessage === announcement.message);
-  }, [announcement.isDismissable, announcement.message]);
+    return !announcement.isDismissable ? false : window.localStorage.getItem(STORAGE_KEY) === announcement.message;
+  });
 
   const handleDismiss = () => {
     window.localStorage.setItem(STORAGE_KEY, announcement.message);
     setIsDismissed(true);
   };
 
-  if (!announcement.isActive || !hasMounted || isDismissed) {
+  if (!announcement.isActive || isDismissed) {
     return null;
   }
 

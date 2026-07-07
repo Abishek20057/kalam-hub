@@ -1,15 +1,13 @@
-import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTypescript from "eslint-config-next/typescript";
 
-export default defineConfig([
-  nextVitals,
-  nextTypescript,
+const eslintConfig = [
+  ...nextVitals,
+  ...nextTypescript,
 
   {
     rules: {
       "@typescript-eslint/no-explicit-any": "error",
-
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
@@ -17,15 +15,18 @@ export default defineConfig([
           varsIgnorePattern: "^_",
         },
       ],
-
-      "react/jsx-key": "error",
       "react-hooks/exhaustive-deps": "warn",
+      "react/jsx-key": "error",
     },
   },
 
-  globalIgnores([
-    ".next/**",
-    "node_modules/**",
-    "prisma/generated/**",
-  ]),
-]);
+  {
+    ignores: [
+      ".next/**",
+      "node_modules/**",
+      "prisma/generated/**",
+    ],
+  },
+];
+
+export default eslintConfig;

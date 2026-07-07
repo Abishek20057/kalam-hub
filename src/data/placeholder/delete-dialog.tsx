@@ -39,7 +39,7 @@ export function DeleteDialog({
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction asChild>
-            <Button variant="destructive" onClick={onConfirm}>
+            <Button variant="secondary" className="border-red-500 bg-red-500 text-white hover:border-red-600 hover:bg-red-600" onClick={onConfirm}>
               Delete
             </Button>
           </AlertDialogAction>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -17,19 +17,15 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [isVerified, setIsVerified] = useState(false);
+  const isAuthenticated = typeof window !== "undefined" && sessionStorage.getItem("kalamhub-admin-auth") === "true";
 
   useEffect(() => {
-    const isAuthenticated = sessionStorage.getItem("kalamhub-admin-auth") === "true";
-
     if (!isAuthenticated && pathname !== "/admin/login") {
       router.replace("/admin/login");
-    } else {
-      setIsVerified(true);
     }
-  }, [pathname, router]);
+  }, [pathname, router, isAuthenticated]);
 
-  if (!isVerified && pathname !== "/admin/login") {
+  if (!isAuthenticated && pathname !== "/admin/login") {
     // Show a loading skeleton or a blank page while verifying auth
     return <Skeleton className="h-screen w-screen rounded-none" />;
   }

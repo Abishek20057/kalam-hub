@@ -11,7 +11,6 @@ import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { SectionHeading } from "@/components/ui/section-heading";
 import type { ProjectDetailData } from "@/data/placeholder/project-details";
-import { cn } from "@/lib/utils";
 
 interface ProjectDetailsContentProps {
   project: ProjectDetailData;
@@ -22,7 +21,7 @@ export function ProjectDetailsContent({ project, relatedProjects }: ProjectDetai
   const prefersReducedMotion = useReducedMotion();
   const [selectedDiagram, setSelectedDiagram] = useState<string | null>(null);
 
-  const breadcrumbItems = useMemo(() => ["Home", "Projects", project.title], []);
+  const breadcrumbItems = useMemo(() => ["Home", "Projects", project.title], [project.title]);
 
   return (
     <main className="bg-[var(--color-bg)]">

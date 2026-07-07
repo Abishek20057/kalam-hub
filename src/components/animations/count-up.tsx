@@ -38,7 +38,6 @@ export function CountUpNumber({
     if (!isIntersecting) return;
 
     if (prefersReducedMotion) {
-      setDisplayValue(value);
       return;
     }
 
@@ -61,7 +60,9 @@ export function CountUpNumber({
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
     };
-  }, [isIntersecting, value, duration, prefersReducedMotion]);
+  }, [isIntersecting, prefersReducedMotion, value, duration]);
+
+  const finalDisplayValue = prefersReducedMotion ? value : displayValue;
 
   return (
     <span
@@ -70,7 +71,7 @@ export function CountUpNumber({
       aria-label={`${prefix}${value}${suffix}`}
     >
       {prefix}
-      {displayValue}
+      {finalDisplayValue}
       {suffix}
     </span>
   );

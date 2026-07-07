@@ -339,16 +339,12 @@ export default function GalleryPage() {
           <Card className="p-8 text-center">
             <SectionHeading heading="Become Part of the KalamHub Community" headingLevel="h2" className="mb-6" />
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link href="/workshops">
-                <Button type="button" variant="primary">
-                  Join Workshop
-                </Button>
-              </Link>
-              <Link href="/projects">
-                <Button type="button" variant="secondary">
-                  Submit Your Project
-                </Button>
-              </Link>
+              <Button asChild variant="primary">
+                <Link href="/workshops">Join Workshop</Link>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link href="/projects">Submit Your Project</Link>
+              </Button>
             </div>
           </Card>
         </Container>
