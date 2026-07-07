@@ -1,33 +1,38 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 
-/**
- * Admin Layout
- *
- * This layout component provides a temporary, client-side authentication guard
- * for all routes under `/admin/*`.
- *
- * It checks for a flag in `sessionStorage`. If the flag is not present,
- * it redirects the user to the login page. This is a placeholder for
- * proper server-side authentication with middleware.
- */
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const router = useRouter();
   const pathname = usePathname();
-  const isAuthenticated = typeof window !== "undefined" && sessionStorage.getItem("kalamhub-admin-auth") === "true";
+
+  const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    if (!isAuthenticated && pathname !== "/admin/login") {
-      router.replace("/admin/login");
-    }
-  }, [pathname, router, isAuthenticated]);
+    const auth =
+      sessionStorage.getItem("kalamhub-admin-auth") === "true";
 
-  if (!isAuthenticated && pathname !== "/admin/login") {
-    // Show a loading skeleton or a blank page while verifying auth
+    if (!auth && pathname !== "/admin/login") {
+      router.replace("/admin/login");
+    } else {
+      setAuthenticated(auth);
+      setLoading(false);
+    }
+  }, [pathname, router]);
+
+  if (loading) {
     return <Skeleton className="h-screen w-screen rounded-none" />;
+  }
+
+  if (!authenticated && pathname !== "/admin/login") {
+    return null;
   }
 
   return <>{children}</>;
