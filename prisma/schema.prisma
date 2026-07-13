@@ -1,11 +1,6 @@
-// KalamHub — Prisma Schema
-// Module 1 scope: schema file exists and is wired up, but no migrations
-// are run yet (Phase 5 is when the database goes live per the Master
-// Prompt phase sequence). Models below mirror the TypeScript interfaces
-// in src/lib/types/ exactly, so Phase 5 is a direct lift — no redesign.
-//
-// DO NOT run `prisma migrate dev` until Phase 5 is approved.
-
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+ 
 generator client {
   provider = "prisma-client-js"
 }
@@ -15,94 +10,136 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Enums
+
+enum ContentStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
 enum DifficultyLevel {
   Beginner
   Intermediate
   Advanced
 }
 
-enum ProjectAccessType {
-  Free
-  Premium
+// Core Models
+
+model User {
+  id        String    @id @default(cuid())
+  name      String?
+  email     String?   @unique
+  image     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  projects  Project[]
 }
 
-enum ActivityCategory {
-  Internships
-  Workshops
-  IndustrialVisits
-  Hackathons
-  ProjectExpo
-  Events
-  TeamActivities
-  Certifications
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  slug     String    @unique
+  projects Project[]
+}
+
+model Tag {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  slug     String    @unique
+  projects Project[] @relation("ProjectTags")
+}
+
+model Technology {
+  id           String    @id @default(cuid())
+  name         String    @unique
+  slug         String    @unique
+  icon         String?
+  projectCount Int       @default(0)
+  isActive     Boolean   @default(true)
+  displayOrder Int       @default(0)
+  projects     Project[] @relation("ProjectTechnologies")
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  altText   String?
+  filename  String
+  size      Int // in bytes
+  width     Int?
+  height    Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relation fields for one-to-one/many thumbnails
+  projectThumbnail Project? @relation("ThumbnailImage")
+
+  // Relation fields for one-to-many galleries
+  projectGallery   Project? @relation(fields: [projectGalleryId], references: [id])
+  projectGalleryId String?
 }
 
 model Project {
-  id            String            @id @default(cuid())
-  title         String
-  slug          String            @unique
-  description   String
-  thumbnailUrl  String
-  thumbnailAlt  String
-  category      String
-  categorySlug  String
-  tags          Json              // ProjectTag[]
-  difficulty    DifficultyLevel
-  accessType    ProjectAccessType
-  featured      Boolean           @default(false)
-  publishedAt   DateTime          @default(now())
-  viewCount     Int               @default(0)
+  id                   String          @id @default(cuid())
+  title                String
+  slug                 String          @unique
+  shortDescription     String          @db.Text
+  fullDescription      String          @db.Text
+  difficulty           DifficultyLevel
+  estimatedCost        Decimal         @db.Decimal(10, 2)
+  duration             String
+  featured             Boolean         @default(false)
+  status               ContentStatus   @default(DRAFT)
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
 
-  @@index([featured])
-  @@index([categorySlug])
+  // Relational fields
+  authorId             String?
+  author               User?           @relation(fields: [authorId], references: [id])
+
+  categoryId           String?
+  category             Category?       @relation(fields: [categoryId], references: [id])
+
+  thumbnailImageId     String?         @unique
+  thumbnailImage       Media?          @relation("ThumbnailImage", fields: [thumbnailImageId], references: [id])
+
+  galleryImages        Media[]
+
+  tags                 Tag[]           @relation("ProjectTags")
+  technologies         Technology[]    @relation("ProjectTechnologies")
+
+  // JSON fields for flexible, non-relational data
+  hardwareComponents   Json
+  softwareRequirements Json
+
+  @@index([authorId])
+  @@index([categoryId])
 }
 
-model Activity {
-  id           String            @id @default(cuid())
-  title        String
-  slug         String            @unique
-  category     ActivityCategory
-  description  String
-  thumbnailUrl String
-  thumbnailAlt String
-  date         DateTime
-  homeFeatured Boolean           @default(false)
-  publishedAt  DateTime          @default(now())
-
-  @@index([homeFeatured])
-}
+// Future Module Placeholders
 
 model TeamMember {
   id           String   @id @default(cuid())
   name         String
   slug         String   @unique
   role         String
-  bio          String?
+  bio          String?  @db.Text
   photoUrl     String?
   photoAlt     String?
-  socialLinks  Json     // SocialLink[]
+  socialLinks  Json // SocialLink[]
   homeVisible  Boolean  @default(true)
   displayOrder Int      @default(0)
 }
 
-model Technology {
-  id           String   @id @default(cuid())
-  name         String
-  slug         String   @unique
-  icon         String
-  projectCount Int      @default(0)
-  isActive     Boolean  @default(true)
-  displayOrder Int      @default(0)
-}
-
 model Statistic {
-  id           String  @id @default(cuid())
-  value        Int
-  label        String
-  icon         String?
-  prefix       String?
-  suffix       String?
-  displayOrder Int     @default(0)
+  id    String @id @default(cuid())
+  value Int
+  label String
+  icon  String?
+  prefix String?
+  suffix String?
+  displayOrder Int @default(0)
 }
 
 // Generic key-value content store backing Hero, About, Why Choose,
@@ -116,7 +153,7 @@ model SiteContent {
 
 model Announcement {
   id            String    @id @default(cuid())
-  message       String
+  message       String    @db.Text
   linkText      String?
   linkHref      String?
   isActive      Boolean   @default(false)
